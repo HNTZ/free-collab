@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const DBpassword= require('./secret')
 
-mongoose.connect('mongodb://localhost:27017/free-collab', {useNewUrlParser: true})
+mongoose.connect(`mongodb+srv://lucas:${DBpassword}@freecollab-k0wpo.mongodb.net/free-collab`, {useNewUrlParser: true, dbName: "free-collab"})
 
 // Connection a la DB
 const db = mongoose.connection

@@ -1,0 +1,7 @@
+{{#if user}}
+    <h1>Bienvenue {{user.firstname}} {{user.lastname}} !</h1>
+    <a href="/auth/logout">Me deconnecter</a>
+{{else}}
+    <a href="/auth/inscription">Inscrivez-vous !</a>
+    <a href="/auth/login">Connectez-vous !</a>
+{{/if}}

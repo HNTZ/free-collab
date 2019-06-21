@@ -1,0 +1,31 @@
+<h2>Inscription</h2>
+{{#each errors}}
+    <p class="alert alert-danger">{{this.msg}}</p>
+{{/each}}
+<form action="/auth/inscription" method="post">
+    <div class="form-group">
+        <label for="username">Pseudo :</label>
+        <input class="form-control" value="{{username}}" type="text" name="username" id="username" placeholder="Pseudo">
+    </div>
+    <div class="form-group">
+        <label for="email">Email :</label>
+        <input class="form-control" value="{{email}}" type="text" name="email" id="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label for="firstname">Prénom :</label>
+        <input class="form-control" value="{{firstname}}" type="text" name="firstname" id="firstname" placeholder="Prénom">
+    </div>
+    <div class="form-group">
+        <label for="lastname">Nom :</label>
+        <input class="form-control" value="{{lastname}}" type="text" name="lastname" id="lastname" placeholder="Nom">
+    </div>
+    <div class="form-group">
+        <label for="date_of_birth">Date de naissance :</label>
+        <input class="form-control" value="{{date_of_birth}}" type="date" name="date_of_birth" id="date_of_birth">
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe :</label>
+        <input class="form-control" value="{{password}}" type="password" name="password" id="password">
+    </div>
+    <button class="btn btn-primary" type="submit">Envoyer</button>
+</form>

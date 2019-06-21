@@ -1,20 +1,19 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
 
-// Page d'accueil
-router.get('/', (req, res) => {
-    res.render('index')
-})
+// Accueil
+const accueilRouter = require('./accueil')
+router.use('/', accueilRouter)
 
 // Contact
-router.get('/contact', (req, res) => {
-    res.render('contact')
-})
+const contactRouter = require('./contact')
+router.use('/contact', contactRouter)
 
-// Search
-router.get('/search', (req, res) => {
-    res.render('search', {error: req.session.error})
-    req.session.error = null
-})
+// Recherche
+const rechercheRouter = require('./recherche')
+router.use('/recherche', rechercheRouter)
+
+// Connexion
+const authRouter = require('./auth')
+router.use('/auth', authRouter)
 
 module.exports = router
