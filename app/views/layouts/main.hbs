@@ -11,7 +11,19 @@
 
 <body>
     <div class="navbar navbar-light bg-light mb-3">
-        <a href="/" class="navbar-brand">FreeCollab.io</a>
+        <a href="/" class="navbar-brand mr-auto">FreeCollab.io</a>
+        {{#if user}}
+        <a href="account">Mon profile</a>
+        {{else}}
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/auth/inscription">Inscrivez-vous !</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/auth/login">Connectez-vous !</a>
+            </li>
+        </ul>
+        {{/if}}
     </div>
     <div class="container">
         {{{body}}}

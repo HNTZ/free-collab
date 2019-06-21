@@ -16,4 +16,7 @@ router.use('/recherche', rechercheRouter)
 const authRouter = require('./auth')
 router.use('/auth', authRouter)
 
+const accountRouter = require('./account')
+router.use('/account', accountRouter)
+
 module.exports = router

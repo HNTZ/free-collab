@@ -2,12 +2,13 @@ const router = require('express').Router()
 const passport = require('passport')
 const { check, validationResult, body } = require('express-validator');
 const UserManager = require('../controllers/user')
+const {loggedOutOnly} = require('../middleware')
 
-router.get('/login', (req, res) => {
+router.get('/login', loggedOutOnly, (req, res) => {
     res.render('login', {error: req.flash('error')})
 })
 
-router.post('/login', passport.authenticate('local', { 
+router.post('/login', loggedOutOnly, passport.authenticate('local', { 
     successRedirect: '/',
     failureRedirect: '/auth/login',
     failureFlash: true 
@@ -18,7 +19,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
-router.get('/inscription', (req, res) => {
+router.get('/inscription', loggedOutOnly, (req, res) => {
     res.render('inscription')
 })
 
@@ -44,9 +45,7 @@ router.post('/inscription', [
             res.render('inscription', {...req.body, errors: errors.array()})
         }
         else {
-            console.log("Pas d'erreur !")
             UserManager.register(req.body).then(() => {
-                console.log('inscris !')
                 passport.authenticate('local')(req, res, function () {
                     'Connecté'
                     res.redirect('/');

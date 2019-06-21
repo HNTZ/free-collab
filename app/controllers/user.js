@@ -27,9 +27,38 @@ class UserManager {
         let NewUser = new UserModel({
             _id: mongoose.Types.ObjectId(),
             date_of_birth: new Date(User.date_of_birth),
+            skills: typeof(User.skills) === 'string' ? [User.skills] : User.skills,
             ...User,
         })
         return NewUser.save()
+    }
+
+    static update(User) {
+        return new Promise((resolve, reject) => {
+            UserModel.findOne({ username: User.username }, function(err, user) {
+                if (!user.validPassword(User.password)) {
+                    return reject({msg: 'Mot de passe incorrect'})
+                }
+                else {
+                    UserModel.updateOne({username: user.username}, {
+                        $set: {
+                            firstname: User.firstname,
+                            lastname: User.lastname,
+                            date_of_birth: new Date(User.date_of_birth),
+                            skills: typeof(User.skills) === 'string' ? [User.skills] : User.skills,
+                        }
+                    }).then((result) => {
+                        if (!result.ok) {
+                            return reject({ msg: 'Une erreur a eu lieu au cours de la mise a jour.' })
+                        }
+                        else {
+                            return resolve({success: true})
+                        }
+                    })
+                }
+            })
+        })
+        
     }
 }
 

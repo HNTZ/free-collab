@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
+const bcrypt = require("bcrypt")
 
-const userSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     username: String,
     email: String,
-    password: String,
+    passwordHash: String,
     firstname: String,
     lastname: String,
     date_of_birth: Date,
@@ -15,11 +16,18 @@ const userSchema = mongoose.Schema({
     admin: {
         type: Boolean,
         default: false
-    }
+    },
+    skills: [
+        {type: mongoose.Schema.Types.ObjectId, ref: 'skill'}
+    ]
 })
-userSchema.methods.validPassword = function( pwd ) {
-    return ( this.password === pwd );
+
+UserSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.passwordHash);
 };
+  
+UserSchema.virtual("password").set(function(value) {
+    this.passwordHash = bcrypt.hashSync(value, 12);
+});
 
-
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model('user', UserSchema)

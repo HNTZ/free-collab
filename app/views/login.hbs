@@ -14,4 +14,16 @@
         <input class="form-control" type="password" name="password" id="password">
     </div>
     <button class="btn btn-primary" type="submit">Envoyer</button>
+    <ul>
+        {{#each skillCategories}}
+        <li>
+            {{this.name}}
+            <ul>
+                {{#each skills}}
+                    <li>{{name}}</li>
+                {{/each}}
+            </ul>
+        </li>
+        {{/each}}
+    </ul>
 </form>
