@@ -1,9 +1,15 @@
 const router = require('express').Router()
-const 
+const ProjectManager = require('../controllers/project')
 
 router.get('/', async (req, res) => {
-    let projects = await 
-    res.render('recherche')
+    let projects = null
+    if (req.query.query || req.query.cat) {
+        projects = await ProjectManager.getWithQuery(req.query)
+    }
+    else {
+        projects = await ProjectManager.getAll()
+    }
+    res.render('recherche', {projects, query: req.query.query, cat: req.query.cat})
 })
 
 module.exports = router

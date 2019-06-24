@@ -1,2 +1,29 @@
 <h1>Recherche</h1>
-<input type="text" name="recherche" id="recherche" value="{{recherche}}" placeholder="Nom de projet...">
+<form action="" method="GET">
+    <div class="form-group">
+        <input class="form-control" type="search" name="query" id="recherche" value="{{query}}" placeholder="🔎 Par mot clé...">
+    </div>
+    <div class="form-group">
+        <label for="cat">Catégorie</label>
+        <select class="custom-select" name="cat" id="cat">
+            <option value="">Choisissez...</option>
+            {{#each projectCategories}}
+                <option {{#equals _id ../cat}} selected {{/equals}} value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Valider">
+    </div>
+</form>    
+{{#if projects}}
+<ul class="list-group">
+{{#each projects}}
+    <li class="list-group-item">
+        <a href="/projets/{{_id}}">{{name}}<span class="badge badge-pill badge-secondary ml-2">{{category}}</a>
+    </li>
+{{/each}}
+</ul>
+{{else}}
+<p>Aucun projet ne correspond à votre recherche.</p>
+{{/if}}
