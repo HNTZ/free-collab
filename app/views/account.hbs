@@ -34,7 +34,7 @@
             <p>{{this.name}}</p>
             {{#each skills}}
             <div class="form-check">
-                <input type="checkbox" name="skills" id="{{name}}" value={{_id}} class="form-check-input" checked="false">
+                <input type="checkbox" name="skills" id="{{name}}" value={{_id}} class="form-check-input" {{#if ../../user.skills}}{{#ifIn _id ../../user.skills}} checked {{/ifIn}}{{/if}}>
                 <label for="{{name}}" class="form-check-label">{{name}}</label>
             </div>
             {{/each}}

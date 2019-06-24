@@ -1,4 +1,3 @@
-const mongoose = require("mongoose")
 const SkillModel = require("../models/skill")
 const SkillCategoryModel = require("../models/skillCategory")
 

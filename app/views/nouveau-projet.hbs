@@ -1,0 +1,42 @@
+<h2>Nouveau projet</h2>
+{{#if success}}
+<div class="alert alert-success">
+    <p>{{success}}</p>
+</div>
+{{/if}}
+<form action="/projets/nouveau" method="post">
+    <div class="form-group">
+        <label for="name">Nom du projet :</label>
+        <input required class="form-control" type="text" name="name" id="name" value="{{project.name}}">
+    </div>
+    <div class="form-group">
+        <label for="descpription">Descpription :</label>
+        <textarea required name="description" id="description">{{project.description}}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="projectCategory_id">Catégorie :</label>
+        <select required class="custom-select" name="projectCategory_id" id="projectCategory_id" selected="{{project.projectCategory_id}}">
+            <option selected>Choisissez...</option>
+            {{#each projectCategories}}
+                <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="website">Lien vers le site : <i class="text-secondary">(optionnel)</i></label>
+        <input type="text" name="website" id="website" class="form-control" value="{{project.website}}">
+    </div>
+    <div class="form-group">
+        <label for="repository">Dépot Git : <i class="text-secondary">(optionnel)</i></label>
+        <input type="text" name="repository" id="repository" class="form-control" value="{{project.repository}}">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Créer">
+</form>
+<script>
+var simplemde = new SimpleMDE({
+    placeholder: `# Decrivez ici votre projet
+
+En quelques paragraphes 😎`,
+    forceSync: true,
+});
+</script>

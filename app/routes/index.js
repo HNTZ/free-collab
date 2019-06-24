@@ -16,7 +16,12 @@ router.use('/recherche', rechercheRouter)
 const authRouter = require('./auth')
 router.use('/auth', authRouter)
 
+// Compte
 const accountRouter = require('./account')
 router.use('/account', accountRouter)
+
+// Projet
+const projetsRouter = require('./projets')
+router.use('/projets', projetsRouter)
 
 module.exports = router

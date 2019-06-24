@@ -1,24 +1,14 @@
-var register = function(Handlebars) {
-  var helpers = {
-    // put all of your helpers inside this object
-    ifIn: function(elem, list, options) {
-      if (list.indexOf(elem) > -1) {
-        return options.fn(this)
-      }
-      return options.inverse(this);
-    },
-  }
+const markdown = require('helper-markdown');
 
-  if (Handlebars && typeof Handlebars.registerHelper === "function") {
-    // register helpers
-    for (var prop in helpers) {
-      Handlebars.registerHelper(prop, helpers[prop])
+module.exports = {
+  ifIn: function(elem, list, options) {
+    let strList = list.map(item =>
+      item && item.toString ? item.toString() : item
+    )
+    if (strList.indexOf(elem && elem.toString ? elem.toString() : elem) > -1) {
+      return options.fn(this)
     }
-  } else {
-    // just return helpers object if we can't register helpers here
-    return helpers
-  }
+    return options.inverse(this)
+  },
+  markdown: markdown()
 }
-
-module.exports.register = register
-module.exports.helpers = register(null)

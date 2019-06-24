@@ -5,6 +5,7 @@ const exphbs  = require('express-handlebars');
 const passport = require('passport')
 const flash = require('connect-flash')
 const SkillManager = require('./controllers/skill')
+const ProjectManager = require('./controllers/project')
 
 require('./config/db')
 require('./config/passportConfig')
@@ -30,7 +31,8 @@ app.use(flash())
 // Pass the user to all templates
 app.use(async function(req, res, next) {
   res.locals.user = req.user
-  res.locals.skillCategories = await SkillManager.getSkillsByCategory().then(skills => skills)
+  res.locals.skillCategories = await SkillManager.getSkillsByCategory().then(skills => skills),
+  res.locals.projectCategories = await ProjectManager.getProjectCategories().then(categories => categories)
   next();
 });
 

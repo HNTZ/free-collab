@@ -27,7 +27,7 @@ class UserManager {
         let NewUser = new UserModel({
             _id: mongoose.Types.ObjectId(),
             date_of_birth: new Date(User.date_of_birth),
-            skills: typeof(User.skills) === 'string' ? [User.skills] : User.skills,
+            skills: typeof User.skills === 'object' ? User.skills : [User.skills],
             ...User,
         })
         return NewUser.save()
@@ -45,7 +45,7 @@ class UserManager {
                             firstname: User.firstname,
                             lastname: User.lastname,
                             date_of_birth: new Date(User.date_of_birth),
-                            skills: typeof(User.skills) === 'string' ? [User.skills] : User.skills,
+                            skills: typeof User.skills === 'object' ? User.skills : [User.skills],
                         }
                     }).then((result) => {
                         if (!result.ok) {

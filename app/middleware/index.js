@@ -1,6 +1,6 @@
 const loggedInOnly = (req, res, next) => {
     if (req.isAuthenticated()) next();
-    else res.redirect("auth/login");
+    else res.redirect("/auth/login");
 };
 
 const loggedOutOnly = (req, res, next) => {
