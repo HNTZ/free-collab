@@ -1,0 +1,15 @@
+<h1>Bienvenue {{user.firstname}} {{user.lastname}} !</h1>
+<h3>Rechercher</h3>
+<a href="/recherche" class="btn btn-primary">Voir tous les projets</a>
+<h3>Mes projets</h3>
+<a class="btn btn-primary mt-1" href="/projets/nouveau">Créer un projet</a>
+<div class="list-group mt-3">
+{{#if projects}}
+{{#each projects}}
+    <a href="/projets/{{_id}}" class="list-group-item list-group-item-action">{{name}}<span class="badge badge-pill badge-secondary ml-2">{{category}}</span></a>
+{{/each}}
+<a href="/projets" class="mt-2">Voir tous mes projets...</a>
+{{else}}
+    <p>Vous n'êtes membre d'aucun projet actuellement.</p>
+{{/if}}
+</div>

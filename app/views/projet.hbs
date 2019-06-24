@@ -1,5 +1,18 @@
 <h1>{{project.name}}</h1>
+{{#equals project.creator user._id}}
+<p><a href="modifier/{{project._id}}"><i class="fa fa-edit mr-1"></i>Modifier</a></p>
+{{/equals}}
 <span class="badge badge-pill badge-primary">{{project.category}}</span>
+<div class="p-2 mt-3 mb-3 border rounded">
+    {{#if project.repository}}
+        <p class="m-2 "><a target="_blank" class="text-dark" href="{{project.repository}}"><i class="fab fa-git-alt mr-2"></i>Dépot</a></p>
+    {{/if}}
+    {{#if project.website}}
+        <p class="m-2 "><a target="_blank" class="text-dark" href="{{project.website}}"><i class="fa fa-globe mr-2"></i>Site Internet</a></p>
+    {{/if}}
+</div>
+<div class="description">
 {{#markdown}}
 {{project.description}}
 {{/markdown}}
+</div>

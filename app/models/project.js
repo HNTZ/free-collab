@@ -19,7 +19,7 @@ const projectSchema = mongoose.Schema({
     },
     members: [
         {
-            id: mongoose.Schema.Types.ObjectId,
+            _id: mongoose.Schema.Types.ObjectId,
             admin: Boolean
         }
     ],

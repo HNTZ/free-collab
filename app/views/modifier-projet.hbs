@@ -1,10 +1,5 @@
-<h2>Nouveau projet</h2>
-{{#if errors}}
-<div class="alert alert-danger">
-    {{errors}}
-</div>
-{{/if}}
-<form action="/projets/nouveau" method="post">
+<h2>Modification du projet</h2>
+<form action="" method="post">
     <div class="form-group">
         <label for="name">Nom du projet :</label>
         <input required class="form-control" type="text" name="name" id="name" value="{{project.name}}">

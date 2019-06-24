@@ -10,5 +10,13 @@ module.exports = {
     }
     return options.inverse(this)
   },
-  markdown: markdown()
+  markdown: markdown(),
+  equals: function(one, two, options) {
+    one = one && one.toString ? one.toString() : one
+    two = two && two.toString ? two.toString() : two
+    if (one == two) {
+      return options.fn(this)
+    }
+    return options.inverse(this)
+  }
 }
