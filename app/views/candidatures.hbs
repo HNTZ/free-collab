@@ -1,0 +1,13 @@
+<h1>Mes candidatures</h1>
+<ul class="list-group">
+    {{#if applications}}
+    {{#each applications}}
+    <p class="list-group-item list-group-item-action"><a href="/projets/{{project_id}}">{{project}}</a><span
+            class="badge badge-pill {{#equals status "En attente"}}badge-warning{{else}}{{#equals status "Accepté"}}badge-success{{else}}badge-danger{{/equals}}{{/equals}} ml-2">{{status}}</span>
+    </p>
+    {{/each}}
+</ul>
+{{else}}
+<p>Vous n'avez fait aucune candidature.</p>
+<a class="btn btn-primary" href="/recherche">Trouvez des projets qui vous intéressent !</a>
+{{/if}}

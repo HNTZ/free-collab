@@ -15,8 +15,10 @@ const applicationSchema = mongoose.Schema({
         ref: 'user'
     },
     message: String,
-    status: String,
-    description: String,
+    status: {
+        type: String,
+        default: 'En attente'
+    },
     date:  {
         type: Date,
         default: Date.now()

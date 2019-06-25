@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {loggedInOnly} = require('../middleware')
 const ProjectManager = require('../controllers/project')
-
+const ApplicationManager = require('../controllers/application')
 
 router.get('/', loggedInOnly, async (req, res) => {
     let projects = await ProjectManager.getUserProjects(req.user._id).then(projects => projects)
@@ -15,8 +15,6 @@ router.get('/nouveau', loggedInOnly, (req, res) => {
 router.post('/nouveau', loggedInOnly, (req, res) => {
     ProjectManager.createProject(req.body, req.user._id).then(project => {
         res.redirect('/projets/' + project._id)
-        // TO DO
-        // res.redirect('projets/' + project._id)
     })
     .catch(err => res.render('nouveau-projet', {project, errors: "Une erreur a eu lieu"}))
 })
@@ -52,7 +50,13 @@ router.post('/postuler/:id', loggedInOnly, async (req, res) => {
         res.redirect('/projets/' + req.params.id)
     }
     else {
-        res.render('postuler')
+        ApplicationManager.createApplication(req.user._id, req.params.id)
+            .then((app) => {
+                res.redirect('/projets/' + req.params.id)
+            })
+            .catch((err) => {
+                res.redirect('/projets/' + req.params.id)
+            })
     }
 })
 

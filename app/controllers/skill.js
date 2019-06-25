@@ -18,6 +18,16 @@ class SkillManager {
       resolve(categories)
     })
   }
+
+  static async getSkillById(_id) {
+    return await SkillModel.findOne({ _id }).then(async skill => {
+      let category = await SkillCategoryModel.findOne({_id: skill.skillCategory_id}).then(skillCategory => skillCategory)
+      return {
+        ...skill._doc,
+        category
+      }
+    })
+  }
 }
 
 module.exports = SkillManager

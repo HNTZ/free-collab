@@ -5,10 +5,9 @@
 {{/ifIn}}
 <p class="text-muted">Vous etes membre de ce projet</p>
 {{else}}
-{{else}}
 {{#if user}}
 <form action="/projets/postuler/{{project._id}}" method="POST">
-    <input type="submit" value="Postuler" {{#ifIn project._id userApplications }} disabled {{/ifIn}} class="btn btn-danger">
+    <input type="submit" value="Postuler" {{#ifIn project._id projectsApplied }} disabled {{/ifIn}} class="btn btn-danger">
 </form>
 {{/if}}
 {{/ifIn}}
@@ -17,8 +16,7 @@
 {{#if project.latest_update_date}}
 <p>Modifié le {{project.latest_update_date}}</p>
 {{/if}}
-<span class="badge badge-pill badge-primary">{{project.category}}</span>
-<a href="postuler/{{project._id}}">Postuler</a>
+<span class="badge badge-pill badge-primary" style="background: {{project.category.color}}">{{project.category.name}}</span>
 <ul>
     <li>{{project.creator.name}} <span class="badge badge-primary">Createur</span></li>
 {{#each project.membersName}}
@@ -40,3 +38,21 @@
 {{project.description}}
 {{/markdown}}
 </div>
+
+{{#ifIn user._id project.admins}}
+<div>
+    <ul>
+    {{#each project.applications}}
+        <li>
+            {{user}}
+            {{#each skills}}
+                <span class="badge badge-primary" style="background: {{category.color}}">{{name}}</span>
+            {{/each}}
+            {{skills.name}}
+            ({{date}})
+            <a href="/application/accept/{{_id}}" class="btn btn-success rounded">Accepter</a>
+            <a href="/application/refuse/{{_id}}" class="btn btn-danger rounded">Refuser</a>
+        </li>
+    {{/each}}
+</div>
+{{/ifIn}}

@@ -35,9 +35,11 @@ app.use(async function(req, res, next) {
   res.locals.user = req.user
   res.locals.skillCategories = await SkillManager.getSkillsByCategory().then(skills => skills),
   res.locals.projectCategories = await ProjectManager.getProjectCategories().then(categories => categories)
-  let applications = await ApplicationManager.getUserApplications().then(application => application)
-  res.locals.projectsApplied = applications.map(application => application.project_id)
-  res.locals.noticeApplied = applications.filter(application => application.notice_id).map(application => application.notice_id)
+  if (req.user) {
+    let applications = await ApplicationManager.getUserApplications(req.user._id).then(application => application)
+    res.locals.projectsApplied = applications.map(application => application.project_id)
+    res.locals.noticeApplied = applications.filter(application => application.notice_id).map(application => application.notice_id)
+  }
   next();
 });
 

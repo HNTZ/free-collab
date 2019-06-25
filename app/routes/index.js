@@ -24,6 +24,14 @@ router.use('/account', accountRouter)
 const projetsRouter = require('./projets')
 router.use('/projets', projetsRouter)
 
+// Candidatures
+const candidaturesRouter = require('./candidatures')
+router.use('/candidatures', candidaturesRouter)
+
+// Application
+const applicationRouter = require('./application')
+router.use('/application', applicationRouter)
+
 // Redirection
 const redirectRouter = require('./redirect')
 router.use('/redirect', redirectRouter)

@@ -4,8 +4,6 @@ const moment = require("moment")
 const { loggedInOnly } = require("../middleware")
 
 router.get("/", loggedInOnly, (req, res) => {
-    console.log(typeof req.user._id)
-    console.log(typeof req.user.skills[0])
     res.render("account", {
     dob: moment(req.user.date_of_birth).format("YYYY-MM-DD"),
   })
