@@ -24,4 +24,8 @@ router.use('/account', accountRouter)
 const projetsRouter = require('./projets')
 router.use('/projets', projetsRouter)
 
+// Redirection
+const redirectRouter = require('./redirect')
+router.use('/redirect', redirectRouter)
+
 module.exports = router

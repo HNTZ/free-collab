@@ -1,16 +1,40 @@
 <h1>{{project.name}}</h1>
-{{#equals project.creator user._id}}
+{{#ifIn user._id project.members}}
+{{#ifIn user._id project.admins}}
 <p><a href="modifier/{{project._id}}"><i class="fa fa-edit mr-1"></i>Modifier</a></p>
-{{/equals}}
+{{/ifIn}}
+<p class="text-muted">Vous etes membre de ce projet</p>
+{{else}}
+{{else}}
+{{#if user}}
+<form action="/projets/postuler/{{project._id}}" method="POST">
+    <input type="submit" value="Postuler" {{#ifIn project._id userApplications }} disabled {{/ifIn}} class="btn btn-danger">
+</form>
+{{/if}}
+{{/ifIn}}
+
+<p>Créé le {{project.creation_date}}</p>
+{{#if project.latest_update_date}}
+<p>Modifié le {{project.latest_update_date}}</p>
+{{/if}}
 <span class="badge badge-pill badge-primary">{{project.category}}</span>
+<a href="postuler/{{project._id}}">Postuler</a>
+<ul>
+    <li>{{project.creator.name}} <span class="badge badge-primary">Createur</span></li>
+{{#each project.membersName}}
+    <li>{{this}}</li>
+{{/each}}
+</ul>
+{{#ifOr project.repository project.website}}
 <div class="p-2 mt-3 mb-3 border rounded">
     {{#if project.repository}}
-        <p class="m-2 "><a target="_blank" class="text-dark" href="{{project.repository}}"><i class="fab fa-git-alt mr-2"></i>Dépot</a></p>
+        <p class="m-2 "><a target="_blank" class="text-dark" href="/redirect/{{project.repository}}"><i class="fab fa-git-alt mr-2"></i>Dépot</a></p>
     {{/if}}
     {{#if project.website}}
-        <p class="m-2 "><a target="_blank" class="text-dark" href="{{project.website}}"><i class="fa fa-globe mr-2"></i>Site Internet</a></p>
+        <p class="m-2 "><a target="_blank" class="text-dark" href="/redirect/{{project.website}}"><i class="fa fa-globe mr-2"></i>Site Internet</a></p>
     {{/if}}
 </div>
+{{/ifOr}}
 <div class="description">
 {{#markdown}}
 {{project.description}}

@@ -58,7 +58,10 @@ class UserManager {
                 }
             })
         })
-        
+    }
+
+    static async getUserName(_id) {
+        return await UserModel.findOne({_id}).then(user => `${user.username} (${user.firstname} ${user.lastname})`)
     }
 }
 

@@ -2,10 +2,10 @@ const markdown = require('helper-markdown');
 
 module.exports = {
   ifIn: function(elem, list, options) {
-    let strList = list.map(item =>
+    let strList = list && list.map(item =>
       item && item.toString ? item.toString() : item
     )
-    if (strList.indexOf(elem && elem.toString ? elem.toString() : elem) > -1) {
+    if (strList && strList.indexOf(elem && elem.toString ? elem.toString() : elem) > -1) {
       return options.fn(this)
     }
     return options.inverse(this)
@@ -18,5 +18,13 @@ module.exports = {
       return options.fn(this)
     }
     return options.inverse(this)
+  },
+  ifOr: function(one, two, options) {
+    if (one || two) {
+      return options.fn(this)
+    }
+    else {
+      return options.inverse(this)
+    }
   }
 }

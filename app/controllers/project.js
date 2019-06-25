@@ -1,6 +1,8 @@
 const ProjectCategoryModel = require('../models/projectCategory');
 const ProjectModel = require('../models/project');
+const UserManager = require('../controllers/user')
 const mongoose = require('mongoose');
+const moment = require('moment')
 
 class ProjectManager {
 	static getProjectCategories() {
@@ -20,7 +22,7 @@ class ProjectManager {
 	}
 
 	static updateProject(Project, _id) {
-		return ProjectModel.findOneAndUpdate({ _id }, { $set: { ...Project, last_update_date: new Date() } });
+		return ProjectModel.findOneAndUpdate({ _id }, { $set: { ...Project, latest_update_date: new Date() } });
 	}
 
 	static getLatest() {
@@ -44,9 +46,34 @@ class ProjectManager {
 			let category = await ProjectCategoryModel.findOne({ _id: project.projectCategory_id }).then(
 				cat => cat.name
 			);
+			let admins = [
+				project.creator.toString ? project.creator.toString() : project.creator
+			]
+			let creatorName = await UserManager.getUserName(project.creator)
+			let membersName = await Promise.all(project.members.map( async member => {
+				if (member.admin) {
+					admins.push(member._id)
+				}
+				return await UserManager.getUserName(member._id)
+			}))
+			let membersTemp = [
+				project.creator.toString ? project.creator.toString() : project.creator
+			]
+			project.members.map(member => membersTemp.push(member._id))
+			let creation_date = moment(project.creation_date).format('DD/MM/YYYY')
+			let latest_update_date = project.latest_update_date ? moment(project.latest_update_date).format('DD/MM/YYYY') : null
 			resolve({
 				...project._doc,
-				category
+				category,
+				creator: {
+					_id: project.creator,
+					name: creatorName
+				},
+				members: membersTemp,
+				membersName,
+				creation_date,
+				admins,
+				latest_update_date
 			});
 		});
 	}
@@ -85,11 +112,12 @@ class ProjectManager {
 		let projects = null;
 		if (query.query && query.cat) {
 			projects = await ProjectModel.find({
-				name: new RegExp(query, 'i'),
+				name: new RegExp(query.query, 'i'),
 				projectCategory_id: query.cat
 			}).then(projects => projects.reverse());
+			console.log(projects)
 		} else if (query.query) {
-			projects = await ProjectModel.find({ name: new RegExp(query, 'i') }).then(projects => projects.reverse());
+			projects = await ProjectModel.find({ name: new RegExp(query.query, 'i') }).then(projects => projects.reverse());
 		} else if (query.cat) {
 			projects = await ProjectModel.find({ projectCategory_id: query.cat }).then(projects => projects.reverse());
 		}

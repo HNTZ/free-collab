@@ -4,8 +4,10 @@ const path = require('path')
 const exphbs  = require('express-handlebars');
 const passport = require('passport')
 const flash = require('connect-flash')
+
 const SkillManager = require('./controllers/skill')
 const ProjectManager = require('./controllers/project')
+const ApplicationManager = require('./controllers/application')
 
 require('./config/db')
 require('./config/passportConfig')
@@ -28,11 +30,14 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
-// Pass the user to all templates
+// Pass General variables
 app.use(async function(req, res, next) {
   res.locals.user = req.user
   res.locals.skillCategories = await SkillManager.getSkillsByCategory().then(skills => skills),
   res.locals.projectCategories = await ProjectManager.getProjectCategories().then(categories => categories)
+  let applications = await ApplicationManager.getUserApplications().then(application => application)
+  res.locals.projectsApplied = applications.map(application => application.project_id)
+  res.locals.noticeApplied = applications.filter(application => application.notice_id).map(application => application.notice_id)
   next();
 });
 
