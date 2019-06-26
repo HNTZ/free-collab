@@ -1,26 +1,64 @@
-<h1>Mes projets</h1>
-<a href="/projets/nouveau" class="btn btn-primary">Créer un projet</a>
 {{#if projects}}
-<div class="container col-10 p-1">
-    {{#each projects}}
-    <div class="row mb-3">
-        <div class="container bg-light rounded p-3">
-            <p>
-                <span class="font-weight-bold">{{name}}</span>
-                <br>
-                <span class="badge badge-pill">{{category}}</span>
-            </p>
-            <br>
-            <div class="float-right">
-                <a href="/projets/{{_id}}" class="boutonVoirCandidature p-2">Voir le projet</a>
+<section id="team" class="section-1">
+    <div class="container text-center">
+        <h1 class="heading-1">Mes projets</h1>
+        <p class="para-1">
+            Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant
+            impression.
+        </p>
+        <a href="/projets/nouveau" class="btn btn-primary"><i class="fa fa-plus text-white pr-2"></i>Créer un projet</a>
+        <br>
+        <br>
+        <div class="row">
+            {{#each projects}}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid"
+                                            src="https://pbs.twimg.com/profile_images/779289835848818688/yifTHAJE.jpg"
+                                            alt="card image"></p>
+                                    <h4 class="card-title">{{name}}</h4>
+                                    <span class="badge badge-pill badge-secondary ml-2">{{category}}</span>
+                                    <p class="card-text">Le Lorem Ipsum est simplement du faux texte employé
+                                    dans la composition et la mise en page avant impression.
+                                    Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les
+                                    années 1500,
+                                    quand un imprimeur anonyme assembla ensemble des morceaux de texte
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">{{name}}</h4>
+                                    <p class="card-text">Le Lorem Ipsum est simplement du faux texte employé
+                                        dans la composition et la mise en page avant impression.
+                                        Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les
+                                        années 1500,
+                                        quand un imprimeur anonyme assembla ensemble des morceaux de texte
+                                        Le Lorem Ipsum est simplement du faux texte employé
+                                        dans la composition et la mise en page avant impression.                                        
+                                    </p>
+                                    <div>
+                                        <a href="/projets/{{_id}}">
+                                            <input type="button" value="Voir le projet" class="btn site-btn3">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            {{/each}}
         </div>
+        <br>
     </div>
-    {{/each}}
-</div>
+</section>
 {{else}}
     <p>Vous n'êtes membre d'aucun projet actuellement.</p>
 {{/if}}
-
-
-</div>

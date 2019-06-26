@@ -9,7 +9,7 @@
                 <br>
                 <span class="badge badge-pill {{#equals status "En attente"}}badge-warning{{else}}{{#equals status "Accepté"}}badge-success{{else}}badge-danger{{/equals}}{{/equals}}">{{status}}</span>
             </p>
-            <a href="/projets/{{project_id}}" class="btn p-2 btn-info mx-0 my-auto">Voir le projet</a>
+            <a href="/projets/{{project_id}}" class="btn p-2 btn-danger mx-0 my-auto">Voir le projet</a>
         </div>
     </div>
     {{/each}}
