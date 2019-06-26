@@ -56,5 +56,22 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'hbs');
 app.set('view options', { layout: 'layouts/main' });
 
+// Chat
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
+io.on('connection', (socket) => {
+  socket.username = 'Un utilisateur anonyme';
+  socket.on('change username', (name) => socket.username = name)
+  socket.on('message', (msg) => io.emit('message',
+  { 'user': socket.username, 'message': msg }))
+  socket.on('join', (username) => {
+    if (username != null) {
+      socket.username = username
+    }
+    socket.broadcast.emit('message',
+    { 'user': 'Serveur ', 'message': socket.username + ' a rejoint la conversation !'})
+  })
+})
+
 const PORT = 3000
-app.listen(PORT, () => console.log('server running on port ' + PORT)) 
+http.listen(PORT, () => console.log('server running on port ' + PORT)) 

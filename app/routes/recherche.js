@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     else {
         projects = await ProjectManager.getAll()
     }
-    res.render('recherche', {projects, query: req.query.query, cat: req.query.cat})
+    res.render('recherche', {projects: projects.projects, count: projects.count, query: req.query.query, cat: req.query.cat})
 })
 
 module.exports = router

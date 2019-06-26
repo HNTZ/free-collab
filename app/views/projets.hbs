@@ -1,9 +1,26 @@
+<h1>Mes projets</h1>
 <a href="/projets/nouveau" class="btn btn-primary">Créer un projet</a>
 {{#if projects}}
-{{#each projects}}
-    <a href="/projets/{{_id}}" class="list-group-item list-group-item-action">{{name}}<span class="badge badge-pill badge-secondary ml-2">{{category}}</span></a>
-{{/each}}
+<div class="container col-10 p-1">
+    {{#each projects}}
+    <div class="row mb-3">
+        <div class="container bg-light rounded p-3">
+            <p>
+                <span class="font-weight-bold">{{name}}</span>
+                <br>
+                <span class="badge badge-pill">{{category}}</span>
+            </p>
+            <br>
+            <div class="float-right">
+                <a href="/projets/{{_id}}" class="boutonVoirCandidature p-2">Voir le projet</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
 {{else}}
     <p>Vous n'êtes membre d'aucun projet actuellement.</p>
 {{/if}}
+
+
 </div>

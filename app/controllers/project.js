@@ -131,7 +131,7 @@ class ProjectManager {
         }))
       })
     )
-    return projects
+    return {count: projects.length, projects}
   }
 
   static async getWithQuery(query) {
@@ -160,7 +160,7 @@ class ProjectManager {
         }))
       })
     )
-    return projects
+    return {count: projects.length, projects}
   }
 
   static async addMember(user_id, project_id) {
