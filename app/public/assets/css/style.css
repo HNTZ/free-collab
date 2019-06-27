@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Pacifico|Righteous|Roboto+Condensed|Ubuntu');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-
 body * {
     color: black;
     font-family: 'Ubuntu';
@@ -209,12 +208,18 @@ width: 100%;
 	background:lightgray;
 }
 
+.form-chat{
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+}
+
 body{
     padding: 0%;
     margin: 0%;
     font-family: 'Lato';
 }
-.navbor{
+.navbar1{
     border: solid rgba(194, 194, 194, 0.5) 0.5px;
 }
 
@@ -259,9 +264,12 @@ body{
     border-radius: 15px 15px 15px 15px;
     margin: 2% 15% 2% 15%;
     padding: 2% 0 0 0;
-    
 }
 
+.section {
+    border: solid rgba(194, 194, 194, 0.5) 0.5px;
+    border-radius: 15px 15px 15px 15px;
+}
 .heading-1 {
     margin-bottom: 2%;
 }
@@ -295,11 +303,14 @@ body{
 
 }
 
-
-
 .social i{
     color: #bb0b0b !important;
     font-size: 20px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 @media screen and (max-width:768px){
@@ -348,6 +359,7 @@ body {
     padding: 0%;
     margin: 0%;
     font-family: 'Lato';
+    overflow-y: scroll;
 }
 
 .navbor {
@@ -688,3 +700,4 @@ body {
         margin-top: 5%;
     }
 }
+

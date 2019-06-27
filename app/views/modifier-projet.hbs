@@ -1,39 +1,46 @@
-<div class="container">
-<h2>Modification du projet</h2>
-<form action="" method="post">
-    <div class="form-group">
-        <label for="name">Nom du projet :</label>
-        <input required class="form-control" type="text" name="name" id="name" value="{{project.name}}">
-    </div>
-    <div class="form-group">
-        <label for="descpription">Descpription :</label>
-        <textarea required name="description" id="description">{{project.description}}</textarea>
-    </div>
-    <div class="form-group">
-        <label for="projectCategory_id">Catégorie :</label>
-        <select required class="custom-select" name="projectCategory_id" id="projectCategory_id">
-            <option>Choisissez...</option>
-            {{#each projectCategories}}
-                <option {{#equals _id ../project.projectCategory_id}} selected {{/equals}} value="{{_id}}">{{name}}</option>
-            {{/each}}
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="website">Lien vers le site : <i class="text-secondary">(optionnel)</i></label>
-        <input type="text" name="website" id="website" class="form-control" value="{{project.website}}">
-    </div>
-    <div class="form-group">
-        <label for="repository">Dépot Git : <i class="text-secondary">(optionnel)</i></label>
-        <input type="text" name="repository" id="repository" class="form-control" value="{{project.repository}}">
-    </div>
-    <input type="submit" class="btn btn-primary" value="Modifier">
-</form>
+<div class="container col-6 p-1">
+    <br>
+    <br>
+    <h2 class="d-flex flex-row justify-content-center">Modification du projet</h2>
+    <br>
+    <br>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="name">Nom du projet :</label>
+            <input required class="form-control" type="text" name="name" id="name" value="{{project.name}}">
+        </div>
+        <div class="form-group">
+            <label for="descpription">Descpription :</label>
+            <textarea required name="description" id="description">{{project.description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="projectCategory_id">Catégorie :</label>
+            <select required class="custom-select" name="projectCategory_id" id="projectCategory_id">
+                <option>Choisissez...</option>
+                {{#each projectCategories}}
+                <option {{#equals _id ../project.projectCategory_id}} selected {{/equals}} value="{{_id}}">{{name}}
+                </option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="website">Lien vers le site : <i class="text-secondary">(optionnel)</i></label>
+            <input type="text" name="website" id="website" class="form-control" value="{{project.website}}">
+        </div>
+        <div class="form-group">
+            <label for="repository">Dépot Git : <i class="text-secondary">(optionnel)</i></label>
+            <input type="text" name="repository" id="repository" class="form-control" value="{{project.repository}}">
+        </div>
+        <br>
+        <br>
+        <input type="submit" class="btn btn-primary d-flex justify-content-center m-auto" value="Modifier">
+    </form>
 </div>
 <script>
-var simplemde = new SimpleMDE({
-    placeholder: `# Decrivez ici votre projet
+    var simplemde = new SimpleMDE({
+        placeholder: `# Decrivez ici votre projet
 
 En quelques paragraphes 😎`,
-    forceSync: true,
-});
+        forceSync: true,
+    });
 </script>

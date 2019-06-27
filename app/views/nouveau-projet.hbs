@@ -1,5 +1,9 @@
-<div class="container">
-<h2>Nouveau projet</h2>
+<div class="container col-6 p-1">
+    <br>
+    <br>
+    <h2 class="d-flex flex-row justify-content-center">Nouveau projet</h2>
+    <br>
+    <br>
 {{#if errors}}
 <div class="alert alert-danger">
     {{errors}}
@@ -31,7 +35,9 @@
         <label for="repository">Dépot Git : <i class="text-secondary">(optionnel)</i></label>
         <input type="text" name="repository" id="repository" class="form-control" value="{{project.repository}}">
     </div>
-    <input type="submit" class="btn btn-primary" value="Créer">
+    <br>
+    <br>
+    <input type="submit" class="btn btn-primary d-flex justify-content-center m-auto" value="Créer">
 </form>
 </div>
 <script>

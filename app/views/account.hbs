@@ -1,5 +1,9 @@
-<div class="container">
+<div class="container col-6 p-1">
+    <br>
+    <br>
     <h2 class="d-flex flex-row justify-content-center">Mon compte</h2>
+    <br>
+    <br>
     {{#each errors}}
     <p class="alert alert-danger">{{this.msg}}</p>
     {{/each}}
@@ -46,6 +50,8 @@
             <label for="password">Mot de passe :</label>
             <input required="true" class="form-control" type="password" name="password" id="password">
         </div>
-        <button class="btn btn-primary d-flex flex-row justify-content-center" type="submit">Mettre à jour </button>
+        <br>
+        <br>
+        <button class="btn btn-primary d-flex justify-content-center m-auto" type="submit">Mettre à jour </button>
     </form>
 </div>

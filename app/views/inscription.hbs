@@ -1,6 +1,10 @@
 
-<div class="container">
+<div class="container col-6 p-1">
+    <br>
+    <br>
     <h2 class="d-flex flex-row justify-content-center">Inscription</h2>
+    <br>
+    <br>
     {{#each errors}}
     <p class="alert alert-danger">{{this.msg}}</p>
     {{/each}}
@@ -49,6 +53,7 @@
             </ul>
             {{/each}}
         </div>
-        <button class="btn btn-primary" type="submit">Envoyer</button>
+        <br>
+        <button class="btn btn-primary d-flex justify-content-center m-auto" type="submit">Envoyer</button>
     </form>
 </div>

@@ -106,18 +106,20 @@
                         </div>
                         {{#ifIn user._id project.members}}
                         <div class="tab-pane fade" id="chatroom" role="tabpanel" aria-labelledby="chatroom-tab">
-                            <div>
-                                <h1>Chat</h1>
-                                <div id="app">
+                            <div >
+                                <br>
+                                <h2 class="d-flex justify-content-center m-auto">Chat</h2>
+                                <br>
+                                <div id="app"  class="container col-6 p-1 section" style="min-height: 520px; " >
                                     <div>
-                                        <ul id="chatbox">
+                                        <ul id="chatbox" style="height: 400px; overflow-y: scroll; " class="section">
                                             <li v-for="message in messages">
                                                 <b>\{{ message.user }}:</b> \{{ message.message }}
                                             </li>
                                         </ul>
-                                        <form @submit.prevent="sendMessage">
-                                            <input type="text" placeholder="Message..." v-model:value="message" />
-                                            <input type="submit" value="Envoyer" class="btn btn-success" />
+                                        <form @submit.prevent="sendMessage" class="form-chat col-12">
+                                            <input type="text" placeholder="Message..." v-model:value="message"  class="w-100" style=" margin: 2% 0% 2% 0%; " />
+                                            <input type="submit" value="Envoyer" class="btn btn-primary" />
                                         </form>
                                     </div>
                                 </div>

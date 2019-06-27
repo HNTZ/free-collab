@@ -1,12 +1,13 @@
 <form action="" method="GET" class="container-fluid">
-
+    <br>
+    <br>
     <div class="container" style="margin-top: 1%">
 
         <div class="row">
 
             <!-- FILTRES -->
 
-            <div class="col-3 border border-secondary rounded p-3 mr-3 d-flex mb-auto flex-column">
+            <div class="col-3 section p-3 mr-3 d-flex mb-auto flex-column">
 
                 <div class="d-flex justify-content-center">
                     <h4>Catégories</h3>
@@ -29,9 +30,9 @@
             </div>
             <div class="col-6">
 
-                <input type="search" name="query" value="{{query}}" placeholder="🔎 Recherche..." class="w-100" id="recherche">
+                <input type="search" name="query" value="{{query}}"  placeholder="🔎 Recherche..." class="w-100" id="recherche">
 
-                <p class="font-weight-bold" style="margin-top: 2%; font-size: 1.2em">{{count}} résultat(s) pour votre recherche.</p>
+                <p class="font-weight-bold d-flex justify-content-center" style="margin-top: 2%; font-size: 1.2em">{{count}} résultat(s) pour votre recherche.</p>
 
                 <hr class="border border-dark" />
                 <!-- RESULTATS RECHERCHE -->
@@ -39,7 +40,7 @@
                 <div class="container">
                     {{#each projects}}
 
-                    <div class="row rounded border p-2 mb-3 pb-3">
+                    <div class="row section p-2 mb-2 pb-2">
                         <div class="col">
                             <p class="font-weight-bold">{{name}}</p>
                             <p>{{category}}</p>
