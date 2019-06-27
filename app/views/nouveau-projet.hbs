@@ -21,7 +21,7 @@
     <div class="form-group">
         <label for="projectCategory_id">Catégorie :</label>
         <select required class="custom-select" name="projectCategory_id" id="projectCategory_id">
-            <option>Choisissez...</option>
+            <option disabled selected value>Choisissez...</option>
             {{#each projectCategories}}
                 <option {{#equals _id ../project.projectCategory_id}} selected {{/equals}} value="{{_id}}">{{name}}</option>
             {{/each}}
