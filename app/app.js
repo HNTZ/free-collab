@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
+const MongoDBStore = require('connect-mongodb-session')(session)
 const path = require('path')
 const exphbs  = require('express-handlebars');
 const passport = require('passport')
@@ -22,9 +22,23 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '/public/assets')))
 
 // Session
-app.use(session({
-  secret: 'foo',
-  store: new MongoStore(options)
+var store = new MongoDBStore({
+  uri: `mongodb+srv://lucas:${process.env.PASS}@freecollab-k0wpo.mongodb.net/free-collab`,
+  collection: 'mySessions'
+});
+
+store.on('error', function(error) {
+  console.log(error);
+});
+
+app.use(require('express-session')({
+  secret: 'This is a secret',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
+  store: store,
+  resave: true,
+  saveUninitialized: true
 }));
 app.use(passport.initialize())
 app.use(passport.session())
