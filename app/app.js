@@ -1,5 +1,5 @@
 const express = require('express')
-const session = require('express-session')
+const session = require('cookie-session')
 const path = require('path')
 const exphbs  = require('express-handlebars');
 const passport = require('passport')
@@ -21,11 +21,18 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '/public/assets')))
 
 // Session
+
+var expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 app.use(session({
-    secret: 'petit jean luc',
-    resave: true,
-    saveUninitialized: false
-  }))
+  name: 'session',
+  keys: ['key1', 'key2'],
+  cookie: {
+    secure: true,
+    httpOnly: true,
+    domain: 'free-collab.herokuapp.com',
+    expires: expiryDate
+  }
+}))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
