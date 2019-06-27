@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
+const DBPass = process.env.PASS
 
-console.log(process.env.PASS)
-mongoose.connect(`mongodb+srv://lucas:${process.env.PASS}@freecollab-k0wpo.mongodb.net/free-collab`, {useNewUrlParser: true, dbName: "free-collab"})
+mongoose.connect(`mongodb+srv://lucas:${DBPass}@freecollab-k0wpo.mongodb.net/free-collab`, {useNewUrlParser: true, dbName: "free-collab"})
 
 // Connection a la DB
 const db = mongoose.connection
