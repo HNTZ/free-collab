@@ -1,5 +1,6 @@
 const express = require('express')
-const session = require('cookie-session')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const path = require('path')
 const exphbs  = require('express-handlebars');
 const passport = require('passport')
@@ -21,18 +22,10 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '/public/assets')))
 
 // Session
-
-var expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 app.use(session({
-  name: 'session',
-  keys: ['key1', 'key2'],
-  cookie: {
-    secure: true,
-    httpOnly: true,
-    domain: 'free-collab.herokuapp.com',
-    expires: expiryDate
-  }
-}))
+  secret: 'foo',
+  store: new MongoStore(options)
+}));
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
