@@ -111,7 +111,7 @@ class ProjectManager {
           }).then(cat => ({
             ...project._doc,
             category: cat.name
-          }))
+          })).catch(err => null)
         })
       )
       resolve(projects)
@@ -129,7 +129,7 @@ class ProjectManager {
         }).then(cat => ({
           ...project._doc,
           category: cat.name
-        }))
+        })).catch(err => null)
       })
     )
     return {count: projects.length, projects}
@@ -158,7 +158,7 @@ class ProjectManager {
         }).then(cat => ({
           ...project._doc,
           category: cat.name
-        }))
+        })).catch(err => null)
       })
     )
     return {count: projects.length, projects}
