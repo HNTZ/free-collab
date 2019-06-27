@@ -44,6 +44,7 @@ class ProjectManager {
             ...project._doc,
             category: cat.name
           }))
+          .catch(err => null)
         })
       )
       resolve(projects)
